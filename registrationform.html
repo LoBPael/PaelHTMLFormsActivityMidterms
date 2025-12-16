@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>User Registration</h1>
+</header>
+
+<main>
+    <div class="popup-form">
+        <form id="registerForm">
+            
+            <label>Full Name</label>
+            <input type="text" required minlength="3">
+
+            <label>Email Address</label>
+            <input type="email" required>
+
+            <label>Password</label>
+            <input type="password" id="password" required minlength="8"
+                   pattern="^(?=.*[0-9])(?=.*[\W_]).{8,}$"
+                   title="Must be at least 8 characters with 1 number and 1 special character">
+
+            <label>Confirm Password</label>
+            <input type="password" id="confirmPassword" required>
+
+            <label>Gender</label>
+            <div class="gender">
+                <input type="radio" name="gender" required> Male
+                <input type="radio" name="gender"> Female
+                <input type="radio" name="gender"> Other
+            </div>
+
+            <label>Date of Birth</label>
+            <input type="date" id="dob" required>
+
+            <label>Country</label>
+            <select required>
+                <option value="">Select Country</option>
+                <option>Philippines</option>
+                <option>USA</option>
+                <option>Japan</option>
+                <option>Germany</option>
+            </select>
+
+            <div class="terms">
+                <input type="checkbox" required>
+                <span>
+                    ✅ I agree to the 
+                    <a href="terms.html" target="_blank">Terms & Conditions</a>
+                </span>
+            </div>
+
+            <button type="submit">Register</button>
+
+        </form>
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 Registration System</p>
+</footer>
+
+<script>
+
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+    let pass = document.getElementById("password").value;
+    let confirm = document.getElementById("confirmPassword").value;
+
+    if (pass !== confirm) {
+        alert("Passwords do not match!");
+        e.preventDefault();
+    }
+
+    let dob = new Date(document.getElementById("dob").value);
+    let today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+
+    if (age < 18) {
+        alert("You must be at least 18 years old.");
+        e.preventDefault();
+    }
+});
+</script>
+
+</body>
+</html>
+
